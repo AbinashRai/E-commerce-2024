@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import { NewUserRequestBody } from "../Types/types.js";
 
 interface IUser extends Document {
   _id: string;
@@ -35,7 +34,6 @@ const schema = new mongoose.Schema(
       type: String,
       required: [true, "Please add Photo"],
     },
-
     gender: {
       type: String,
       enum: ["male", "female"],
