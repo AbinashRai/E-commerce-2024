@@ -2,7 +2,6 @@ import { TryCatch } from "../Middlewares/Error.js";
 import { Product } from "../Models/Products.js";
 import ErrorHandler from "../Utils/Utility-class.js";
 import { myCache } from "../App.js";
-// import { faker } from "@faker-js/faker";
 // Revalidate on New,Update,Delete Product & on New Order
 export const getlatestProducts = TryCatch(async (req, res, next) => {
     let products;

@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Skeleton } from "../components/Loader";
 import ProductCard from "../components/ProductCard";
-import { useLatestProductsQuery } from "../redux/api/productAPI";
-import { addToCart } from "../redux/reducer/cartReducer";
+import { useLatestProductsQuery } from "../Redux/API/ProductApi";
+import { addToCart } from "../Redux/Reducer/CartReducer";
 import { CartItem } from "../Types/Types";
 
 const Home = () => {

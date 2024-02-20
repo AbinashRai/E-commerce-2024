@@ -3,10 +3,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from "../Firebase";
-import { getUser, useLoginMutation } from "../redux/api/userAPI";
+import { getUser, useLoginMutation } from "../Redux/API/UserApi";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
-import { MessageResponse } from "../types/api-types";
-import { userExist, userNotExist } from "../redux/reducer/userReducer";
+import { MessageResponse } from "../Types/ApiTypes";
+import { userExist, userNotExist } from "../Redux/Reducer/UserReducer";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
