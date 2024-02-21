@@ -1,11 +1,5 @@
-import mongoose from "mongoose";
 import { myCache } from "../App.js";
-export const connectDB = () => {
-    mongoose
-        .connect("mongodb://localhost:27017/ecommerce")
-        .then((c) => console.log(`DB connected to ${c.connection.host}`))
-        .catch((e) => console.log(e));
-};
+import { Product } from "../Models/Products.js";
 export const invalidateCache = ({ product, order, admin, userId, orderId, productId, }) => {
     if (product) {
         const productKeys = [
@@ -34,5 +28,15 @@ export const invalidateCache = ({ product, order, admin, userId, orderId, produc
             "admin-bar-charts",
             "admin-line-charts",
         ]);
+    }
+};
+export const reduceStock = async (orderItems) => {
+    for (let i = 0; i < orderItems.length; i++) {
+        const order = orderItems[i];
+        const product = await Product.findById(order.productId);
+        if (!product)
+            throw new Error("Product Not Found");
+        product.stock -= order.quantity;
+        await product.save();
     }
 };

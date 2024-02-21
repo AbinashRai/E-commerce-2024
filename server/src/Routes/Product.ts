@@ -1,17 +1,17 @@
 import express from "express";
 import { adminOnly } from "../Middlewares/Auth.js";
 
+import { singleUpload } from "../Middlewares/Multer.js";
 import {
   deleteProduct,
   getAdminProducts,
   getAllCategories,
   getAllProducts,
+  getLatestProduct,
   getSingleProduct,
-  getlatestProducts,
   newProduct,
   updateProduct,
 } from "../Controllers/Product.js";
-import { singleUpload } from "../Middlewares/Multer.js";
 
 const app = express.Router();
 
@@ -22,7 +22,7 @@ app.post("/new", adminOnly, singleUpload, newProduct);
 app.get("/all", getAllProducts);
 
 //To get last 10 Products  - /api/v1/product/latest
-app.get("/latest", getlatestProducts);
+app.get("/latest", getLatestProduct);
 
 //To get all unique Categories  - /api/v1/product/categories
 app.get("/categories", getAllCategories);

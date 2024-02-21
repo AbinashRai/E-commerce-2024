@@ -3,7 +3,15 @@ import { UserReducerInitialState } from "../../Types/reducer-types";
 import { User } from "../../Types/Types";
 
 const initialState: UserReducerInitialState = {
-  user: null,
+  user: {
+    name: "",
+    email: "",
+    photo: "",
+    gender: "",
+    role: "",
+    dob: "",
+    _id: "",
+  },
   loading: true,
 };
 
@@ -17,7 +25,15 @@ export const userReducer = createSlice({
     },
     userNotExist: (state) => {
       state.loading = false;
-      state.user = null;
+      state.user = {
+        name: "",
+        email: "",
+        photo: "",
+        gender: "",
+        role: "",
+        dob: "",
+        _id: "",
+      };
     },
   },
 });
