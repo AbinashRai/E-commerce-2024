@@ -3,7 +3,7 @@ import { productAPI } from "./API/ProductApi";
 import { userAPI } from "./API/ProductApi";
 import { userReducer } from "./Reducer/UserReducer";
 import { cartReducer } from "./Reducer/CartReducer";
-import { orderApi } from "./API/orderAPI";
+import { orderApi } from "./API/OrderApi";
 
 export const server = import.meta.env.VITE_SERVER;
 
