@@ -4,20 +4,14 @@ import NodeCache from "node-cache";
 // importing routes
 import userRoute from "./Routes/User.js";
 import productRoute from "./Routes/Product.js";
+import orderRoute from "./Routes/Order.js";
 import mongoose from "mongoose";
 const port = 4000;
-const connectDB = () => {
-    mongoose
-        .connect("mongodb://localhost:27017/ecommerce")
-        .then((c) => console.log(`DB connected to ${c.connection.host}`))
-        .catch((e) => console.log(e));
-};
-connectDB();
+mongoose
+    .connect("mongodb://localhost:27017/ecommerce")
+    .then((c) => console.log(`DB connected to ${c.connection.host}`))
+    .catch((e) => console.log(e));
 export const myCache = new NodeCache();
-// mongoose
-//   .connect("mongodb://localhost:27017/ecommerce")
-//   .then((c) => console.log(`DB connected to ${c.connection.host}`))
-//   .catch((e) => console.log(e));
 const app = express();
 app.use(express.json());
 app.get("/", (req, res) => {
@@ -26,7 +20,7 @@ app.get("/", (req, res) => {
 // Using Routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
-// app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/order", orderRoute);
 app.use("/uploads", express.static("Uploads"));
 app.use(errorMiddleware);
 app.listen(port, () => {
