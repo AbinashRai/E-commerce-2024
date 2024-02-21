@@ -78,7 +78,6 @@ const Login = () => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-
         <div>
           <p>Already Signed In Once</p>
           <button onClick={loginHandler}>

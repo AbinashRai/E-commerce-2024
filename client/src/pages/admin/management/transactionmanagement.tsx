@@ -2,7 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { OrderItem } from "../../../models/types";
-import { server } from "../../../redux/store";
+import { server } from "../../../Redux/store";
 
 const img =
   "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=804";
@@ -63,8 +63,7 @@ const TransactionManagement = () => {
         <section
           style={{
             padding: "2rem",
-          }}
-        >
+          }}>
           <h2>Order Items</h2>
 
           {orderItems.map((i) => (
@@ -107,8 +106,7 @@ const TransactionManagement = () => {
                   : status === "Shipped"
                   ? "green"
                   : "red"
-              }
-            >
+              }>
               {status}
             </span>
           </p>

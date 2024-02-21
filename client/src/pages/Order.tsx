@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { Column } from "react-table";
 import TableHOC from "../components/admin/TableHOC";
 import { Skeleton } from "../components/Loader";
-import { useMyOrdersQuery } from "../Redux//API/OrderApi";
-import { RootState } from "../Redux/Store";
+import { useMyOrdersQuery } from "../Redux/API/OrderApi";
+import { RootState } from "../Redux/store";
 import { CustomError } from "../Types/ApiTypes";
 
 type DataType = {
