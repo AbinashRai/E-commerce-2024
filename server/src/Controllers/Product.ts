@@ -9,6 +9,7 @@ import { Product } from "../Models/Products.js";
 import ErrorHandler from "../Utils/Utility-class.js";
 import { myCache } from "../App.js";
 import { invalidateCache } from "../Utils/Features.js";
+import { rm } from "fs";
 // import { faker } from "@faker-js/faker";
 
 // Revalidate on New,Update,Delete Product & on New Order

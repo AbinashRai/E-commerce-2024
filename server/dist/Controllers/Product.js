@@ -2,6 +2,9 @@ import { TryCatch } from "../Middlewares/Error.js";
 import { Product } from "../Models/Products.js";
 import ErrorHandler from "../Utils/Utility-class.js";
 import { myCache } from "../App.js";
+import { invalidateCache } from "../Utils/Features.js";
+import { rm } from "fs";
+// import { faker } from "@faker-js/faker";
 // Revalidate on New,Update,Delete Product & on New Order
 export const getlatestProducts = TryCatch(async (req, res, next) => {
     let products;
@@ -58,6 +61,80 @@ export const getSingleProduct = TryCatch(async (req, res, next) => {
     return res.status(200).json({
         success: true,
         product,
+    });
+});
+export const newProduct = TryCatch(async (req, res, next) => {
+    const { name, price, stock, category } = req.body;
+    const photo = req.file;
+    if (!photo)
+        return next(new ErrorHandler("Please add Photo", 400));
+    if (!name || !price || !stock || !category) {
+        rm(photo.path, () => {
+            console.log("Deleted");
+        });
+        return next(new ErrorHandler("Please enter All Fields", 400));
+    }
+    await Product.create({
+        name,
+        price,
+        stock,
+        category: category.toLowerCase(),
+        photo: photo.path,
+    });
+    invalidateCache({ product: true, admin: true });
+    return res.status(201).json({
+        success: true,
+        message: "Product Created Successfully",
+    });
+});
+export const updateProduct = TryCatch(async (req, res, next) => {
+    const { id } = req.params;
+    const { name, price, stock, category } = req.body;
+    const photo = req.file;
+    const product = await Product.findById(id);
+    if (!product)
+        return next(new ErrorHandler("Product Not Found", 404));
+    if (photo) {
+        rm(product.photo, () => {
+            console.log("Old Photo Deleted");
+        });
+        product.photo = photo.path;
+    }
+    if (name)
+        product.name = name;
+    if (price)
+        product.price = price;
+    if (stock)
+        product.stock = stock;
+    if (category)
+        product.category = category;
+    await product.save();
+    invalidateCache({
+        product: true,
+        productId: String(product._id),
+        admin: true,
+    });
+    return res.status(200).json({
+        success: true,
+        message: "Product Updated Successfully",
+    });
+});
+export const deleteProduct = TryCatch(async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+    if (!product)
+        return next(new ErrorHandler("Product Not Found", 404));
+    rm(product.photo, () => {
+        console.log("Product Photo Deleted");
+    });
+    await product.deleteOne();
+    invalidateCache({
+        product: true,
+        productId: String(product._id),
+        admin: true,
+    });
+    return res.status(200).json({
+        success: true,
+        message: "Product Deleted Successfully",
     });
 });
 export const getAllProducts = TryCatch(async (req, res, next) => {

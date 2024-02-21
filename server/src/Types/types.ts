@@ -1,20 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 
 export interface NewUserRequestBody {
-  name: String;
-  email: String;
-  photo: String;
-  role: String;
-  _id: String;
+  name: string;
+  email: string;
+  photo: string;
+  gender: string;
+  _id: string;
   dob: Date;
-  gender: String;
 }
 
 export interface NewProductRequestBody {
-  name: String;
-  category: String;
-  stock: Number;
-  price: Number;
+  name: string;
+  category: string;
+  price: number;
+  stock: number;
 }
 
 export type ControllerType = (
@@ -38,4 +37,40 @@ export interface BaseQuery {
   };
   price?: { $lte: number };
   category?: string;
+}
+
+export type InvalidateCacheProps = {
+  product?: boolean;
+  order?: boolean;
+  admin?: boolean;
+  userId?: string;
+  orderId?: string;
+  productId?: string | string[];
+};
+
+export type OrderItemType = {
+  name: string;
+  photo: string;
+  price: number;
+  quantity: number;
+  productId: string;
+};
+
+export type ShippingInfoType = {
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  pinCode: number;
+};
+
+export interface NewOrderRequestBody {
+  shippingInfo: ShippingInfoType;
+  user: string;
+  subtotal: number;
+  tax: number;
+  shippingCharges: number;
+  discount: number;
+  total: number;
+  orderItems: OrderItemType[];
 }
