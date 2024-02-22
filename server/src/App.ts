@@ -1,14 +1,23 @@
 import express from "express";
 import { errorMiddleware } from "./Middlewares/Error.js";
 import NodeCache from "node-cache";
+import mongoose from "mongoose";
+import Stripe from "stripe";
+import { config } from "dotenv";
 
 // importing routes
 import userRoute from "./Routes/User.js";
 import productRoute from "./Routes/Product.js";
 import orderRoute from "./Routes/Order.js";
-import mongoose from "mongoose";
+import paymentRoute from "./Routes/Payment.js";
+
+config({
+  path: "./.env",
+});
 
 const port = 4000;
+
+const stripeKey = process.env.STRIPE_KEY || "";
 
 mongoose
   .connect("mongodb://localhost:27017/ecommerce")
@@ -16,6 +25,7 @@ mongoose
   .catch((e) => console.log(e));
 
 export const myCache = new NodeCache();
+export const stripe = new Stripe(stripeKey);
 
 const app = express();
 
@@ -29,6 +39,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
+// app.use("/api/v1/payment", paymentRoute);
 
 app.use("/uploads", express.static("Uploads"));
 
