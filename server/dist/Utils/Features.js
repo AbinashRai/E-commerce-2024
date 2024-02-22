@@ -1,3 +1,4 @@
+// import { myCache } from "../App.js";
 import { Product } from "../Models/Products.js";
 // export const invalidateCache = ({
 //   product,

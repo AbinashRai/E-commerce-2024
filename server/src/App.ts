@@ -1,6 +1,6 @@
 import express from "express";
 import { errorMiddleware } from "./Middlewares/Error.js";
-import NodeCache from "node-cache";
+// import NodeCache from "node-cache";
 import mongoose from "mongoose";
 import Stripe from "stripe";
 import { config } from "dotenv";
@@ -24,7 +24,7 @@ mongoose
   .then((c) => console.log(`DB connected to ${c.connection.host}`))
   .catch((e) => console.log(e));
 
-export const myCache = new NodeCache();
+// export const myCache = new NodeCache();
 export const stripe = new Stripe(stripeKey);
 
 const app = express();
