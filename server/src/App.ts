@@ -4,12 +4,15 @@ import { errorMiddleware } from "./Middlewares/Error.js";
 import mongoose from "mongoose";
 import Stripe from "stripe";
 import { config } from "dotenv";
+import cors from "cors";
+import morgan from "morgan";
 
 // importing routes
 import userRoute from "./Routes/User.js";
 import productRoute from "./Routes/Product.js";
 import orderRoute from "./Routes/Order.js";
 import paymentRoute from "./Routes/Payment.js";
+import dashboardRoute from "./Routes/Stats.js";
 
 config({
   path: "./.env",
@@ -30,6 +33,8 @@ export const stripe = new Stripe(stripeKey);
 const app = express();
 
 app.use(express.json());
+app.use(morgan("dev"));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("API working with /api/v1");
@@ -40,6 +45,7 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/order", orderRoute);
 // app.use("/api/v1/payment", paymentRoute);
+app.use("/api/v1/dashboard", dashboardRoute);
 
 app.use("/uploads", express.static("Uploads"));
 

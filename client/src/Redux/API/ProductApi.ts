@@ -11,10 +11,12 @@ import {
   UpdateProductRequest,
 } from "../../Types/ApiTypes";
 
+const BASE_URL = "http://localhost:4000";
+
 export const productAPI = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER}/api/v1/product/`,
+    baseUrl: `${BASE_URL}/api/v1/product/`,
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
