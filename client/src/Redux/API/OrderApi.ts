@@ -7,10 +7,12 @@ import {
   UpdateOrderRequest,
 } from "../../Types/ApiTypes";
 
+const VITE_SERVER = "http://localhost:4000";
+
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER}/api/v1/order/`,
+    baseUrl: `${VITE_SERVER}/api/v1/order/`,
   }),
   tagTypes: ["orders"],
   endpoints: (builder) => ({

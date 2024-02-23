@@ -8,10 +8,11 @@ import {
 } from "../../Types/ApiTypes";
 import { User } from "../../Types/Types";
 
+const VITE_SERVER = "http://localhost:4000";
 export const userAPI = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER}/api/v1/user/`,
+    baseUrl: `${VITE_SERVER}/api/v1/user/`,
   }),
   tagTypes: ["users"],
   endpoints: (builder) => ({

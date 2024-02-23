@@ -6,10 +6,12 @@ import {
   StatsResponse,
 } from "../../Types/ApiTypes";
 
+const VITE_SERVER = "http://localhost:4000";
+
 export const dashboardApi = createApi({
   reducerPath: "dashboardApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER}/api/v1/dashboard/`,
+    baseUrl: `${VITE_SERVER}/api/v1/dashboard/`,
   }),
   endpoints: (builder) => ({
     stats: builder.query<StatsResponse, string>({

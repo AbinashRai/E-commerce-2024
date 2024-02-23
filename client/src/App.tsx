@@ -14,6 +14,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./Firebase";
 import { getUser } from "./Redux/API/UserApi";
 import { userExist, userNotExist } from "./Redux/Reducer/UserReducer";
+import Checkout from "./pages/Checkout";
+import Shipping from "./pages/Shipping";
 
 const Home = lazy(() => import("./pages/Home"));
 const Search = lazy(() => import("./pages/Search"));
@@ -75,10 +77,10 @@ const App = () => {
           {/* Logged In User Routes */}
           <Route
             element={<ProtectedRoute isAuthenticated={user ? true : false} />}>
-            {/* <Route path="/shipping" element={<Shipping />} /> */}
+            <Route path="/shipping" element={<Shipping />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/order/:id" element={<OrderDetails />} />
-            {/* <Route path="/pay" element={<Checkout />} /> */}
+            <Route path="/pay" element={<Checkout />} />
           </Route>
 
           {/* Admin Routes */}
