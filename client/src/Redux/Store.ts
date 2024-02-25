@@ -6,7 +6,7 @@ import { cartReducer } from "./Reducer/CartReducer";
 import { orderApi } from "./API/OrderApi";
 import { dashboardApi } from "./API/DashboardApi";
 
-export const server = import.meta.env.VITE_SERVER;
+export const server = "http://localhost:4000";
 
 export const store = configureStore({
   reducer: {
