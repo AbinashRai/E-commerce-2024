@@ -53,6 +53,7 @@
       @include flex;
       > button {
         @include flex;
+        @include btn(0.5rem 1rem, $color3, $color1);
         border-radius: 10px;
         &:disabled {
           cursor: not-allowed;
