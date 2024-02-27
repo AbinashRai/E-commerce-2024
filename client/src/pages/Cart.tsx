@@ -7,7 +7,7 @@ import CartItemCard from "../components/Cart-Item";
 import {
   addToCart,
   calculatePrice,
-  discountApplied,
+  discountApplied, 
   removeCartItem,
 } from "../Redux/Reducer/CartReducer";
 import { RootState, server } from "../Redux/store";

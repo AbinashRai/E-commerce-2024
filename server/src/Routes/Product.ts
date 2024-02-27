@@ -16,7 +16,7 @@ import {
 const app = express.Router();
 
 //To Create New Product  - /api/v1/product/new
-app.post("/new", adminOnly, singleUpload, newProduct);
+app.post("/new", singleUpload, newProduct);
 
 //To get all Products with filters  - /api/v1/product/all
 app.get("/all", getAllProducts);
@@ -28,13 +28,13 @@ app.get("/latest", getLatestProduct);
 app.get("/categories", getAllCategories);
 
 //To get all Products   - /api/v1/product/admin-products
-app.get("/admin-products", adminOnly, getAdminProducts);
+app.get("/admin-products", getAdminProducts);
 
 // To get, update, delete Product
 app
   .route("/:id")
   .get(getSingleProduct)
-  .put(adminOnly, singleUpload, updateProduct)
-  .delete(adminOnly, deleteProduct);
+  .put(singleUpload, updateProduct)
+  .delete(deleteProduct);
 
 export default app;

@@ -1,6 +1,5 @@
 import express from "express";
 import { errorMiddleware } from "./Middlewares/Error.js";
-// import NodeCache from "node-cache";
 import mongoose from "mongoose";
 import Stripe from "stripe";
 import { config } from "dotenv";
@@ -15,12 +14,12 @@ config({
     path: "./.env",
 });
 const port = 4000;
-const stripeKey = process.env.STRIPE_KEY || "";
+const stripeKey = "sk_test_51OnvUKSADt4BmFLUxn9LRZPNqz6G3r1pMjo79RdGtkgvH0u0Gimn5pbvlWSnDyviHx2ENJspQI24FCWuMdxlburj00bkaBVCo8" ||
+    "";
 mongoose
     .connect("mongodb://localhost:27017/ecommerce")
     .then((c) => console.log(`DB connected to ${c.connection.host}`))
     .catch((e) => console.log(e));
-// export const myCache = new NodeCache();
 export const stripe = new Stripe(stripeKey);
 const app = express();
 app.use(express.json());

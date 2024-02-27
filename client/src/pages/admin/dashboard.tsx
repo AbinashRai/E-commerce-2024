@@ -1,9 +1,9 @@
-import { BiMaleFemale } from "react-icons/bi";
+// import { BiMaleFemale } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { FaRegBell } from "react-icons/fa";
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 import AdminSidebar from "../../components/admin/AdminSidebar";
-import { BarChart, DoughnutChart } from "../../components/admin/Charts";
+// import { BarChart, DoughnutChart } from "../../components/admin/Charts";
 import Table from "../../components/admin/DashboardTable";
 import data from "../../../public/data.json";
 
@@ -52,7 +52,7 @@ const Dashboard = () => {
         </section>
 
         <section className="graph-container">
-          <div className="revenue-chart">
+          {/* <div className="revenue-chart">
             <h2>Revenue & Transaction</h2>
             <BarChart
               data_2={[300, 144, 433, 655, 237, 755, 190]}
@@ -62,7 +62,7 @@ const Dashboard = () => {
               bgColor_1="rgb(0, 115, 255)"
               bgColor_2="rgba(53, 162, 235, 0.8)"
             />
-          </div>
+          </div> */}
 
           <div className="dashboard-categories">
             <h2>Inventory</h2>
@@ -81,7 +81,7 @@ const Dashboard = () => {
         </section>
 
         <section className="transaction-container">
-          <div className="gender-chart">
+          {/* <div className="gender-chart">
             <h2>Gender Ratio</h2>
             <DoughnutChart
               labels={["Female", "Male"]}
@@ -95,7 +95,7 @@ const Dashboard = () => {
             <p>
               <BiMaleFemale />
             </p>
-          </div>
+          </div> */}
           <Table data={data.transaction} />
         </section>
       </main>
